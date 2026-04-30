@@ -1,0 +1,17 @@
+{
+  "node": "n8n-nodes-sse-client.sseClient",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Development", "Core Nodes"],
+  "resources": {
+    "primaryDocumentation": [
+      {
+        "url": "https://github.com/25hour/n8n-nodes-sse-client"
+      }
+    ]
+  },
+  "alias": ["sse", "server-sent events", "streaming", "event stream", "api key", "event source", "real-time"],
+  "subcategories": {
+    "Core Nodes": ["Helpers"]
+  }
+}

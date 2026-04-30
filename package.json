@@ -1,0 +1,58 @@
+{
+  "name": "n8n-nodes-sse-client",
+  "version": "0.2.0",
+  "description": "SSE Client action node for n8n — connects to SSE endpoints mid-workflow with auth, custom headers, and configurable stop conditions",
+  "license": "MIT",
+  "author": {
+    "name": "25hour",
+    "email": "sebastien@25hour.io"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "sse",
+    "server-sent-events",
+    "streaming",
+    "event-stream",
+    "real-time"
+  ],
+  "engines": {
+    "node": ">=18.10"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc -w",
+    "lint": "eslint nodes/ --ext .ts",
+    "lint:fix": "eslint nodes/ --ext .ts --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [],
+    "nodes": [
+      "dist/nodes/SseClient/SseClient.node.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/25hour/n8n-nodes-sse-client.git"
+  },
+  "homepage": "https://github.com/25hour/n8n-nodes-sse-client",
+  "bugs": {
+    "url": "https://github.com/25hour/n8n-nodes-sse-client/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
+    "n8n-workflow": "^2.16.0",
+    "typescript": "~5.7.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
