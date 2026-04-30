@@ -39,11 +39,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/25hour/n8n-nodes-sse-client.git"
+    "url": "https://github.com/seboush/n8n-nodes-sse-client.git"
   },
-  "homepage": "https://github.com/25hour/n8n-nodes-sse-client",
+  "homepage": "https://github.com/seboush/n8n-nodes-sse-client",
   "bugs": {
-    "url": "https://github.com/25hour/n8n-nodes-sse-client/issues"
+    "url": "https://github.com/seboush/n8n-nodes-sse-client/issues"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
