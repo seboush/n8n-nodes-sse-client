@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-sse-client",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "SSE Client action node for n8n — connects to SSE endpoints mid-workflow with auth, custom headers, and configurable stop conditions",
   "license": "MIT",
   "author": {

@@ -43,6 +43,13 @@ export class SseClient implements INodeType {
 					show: { authentication: ['headerAuth'] },
 				},
 			},
+			{
+				name: 'anthropicApi',
+				required: false,
+				displayOptions: {
+					show: { authentication: ['anthropicApi'] },
+				},
+			},
 		],
 		properties: [
 			{
@@ -60,6 +67,7 @@ export class SseClient implements INodeType {
 				type: 'options',
 				options: [
 					{ name: 'None', value: 'none' },
+					{ name: 'Anthropic API Key', value: 'anthropicApi' },
 					{ name: 'Bearer Auth', value: 'bearerAuth' },
 					{ name: 'Header Auth (API Key)', value: 'headerAuth' },
 				],
@@ -282,7 +290,10 @@ async function processItem(
 		'Cache-Control': 'no-cache',
 	};
 
-	if (authentication === 'bearerAuth') {
+	if (authentication === 'anthropicApi') {
+		const credentials = await this.getCredentials('anthropicApi');
+		headers['x-api-key'] = credentials.apiKey as string;
+	} else if (authentication === 'bearerAuth') {
 		const credentials = await this.getCredentials('httpBearerAuth');
 		headers['Authorization'] = `Bearer ${credentials.token as string}`;
 	} else if (authentication === 'headerAuth') {
@@ -467,7 +478,10 @@ async function processItem(
 				);
 			}
 
-			if (attempt < retryAttempts) {
+			const isClientError = error instanceof NodeOperationError &&
+				/^HTTP 4\d{2}:/.test(error.message);
+
+			if (!isClientError && attempt < retryAttempts) {
 				await new Promise((r) => setTimeout(r, retryDelay));
 				continue;
 			}
