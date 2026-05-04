@@ -45,12 +45,12 @@ The node uses native `fetch` + `ReadableStream` (Node 18+) — zero runtime depe
 
 ## Key Design Decisions
 
-- **No custom credential types** — reuses n8n's built-in `httpBearerAuth` and `httpHeaderAuth`, shown conditionally based on the Authentication dropdown.
+- **Credential types** — reuses n8n's built-in `httpBearerAuth`, `httpHeaderAuth`, and `anthropicApi`, shown conditionally based on the Authentication dropdown.
 - **`usableAsTool: true`** — the node can be used as an AI agent tool in n8n.
 - **Stop conditions are regex** — `stopEventType` matches against the SSE `event:` field, `stopDataPattern` matches against the `data:` field. Empty = no stop on that field.
 - **Filter Event Types** — optional regex in Options to collect only events whose type matches. Stop conditions are still evaluated on all events regardless of filter.
 - **Timeout returns partial results** — if events were collected before timeout, they're returned (not an error). Error only if zero events collected.
-- **Retry wraps the entire connection** — on network error, the whole fetch+stream loop retries (not individual reads).
+- **Retry wraps the entire connection** — on network error, the whole fetch+stream loop retries (not individual reads). 4xx errors skip retry (client errors won't resolve by retrying).
 - Uses `NodeConnectionTypes.Main` (not `NodeConnectionType`) — the enum value export name in the installed n8n-workflow version.
 
 ## n8n Node Conventions

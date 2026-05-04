@@ -7,7 +7,7 @@ Unlike the built-in SSE Trigger, this node runs **inside** a workflow: it opens 
 ## Features
 
 - Connect to any SSE endpoint as a mid-workflow action node
-- **Authentication**: None, Bearer Auth, Header Auth (API Key)
+- **Authentication**: None, Anthropic API Key, Bearer Auth, Header Auth (API Key)
 - **Custom headers** via key-value pairs or raw JSON
 - **Stop conditions**: regex on event type and/or event data
 - **Filter Event Types**: regex to collect only matching event types
@@ -33,10 +33,11 @@ Requires n8n 1.0+ and Node.js 18.10+.
 | Method | Use case |
 |---|---|
 | **None** | Public SSE endpoints |
+| **Anthropic API Key** | Anthropic/Claude API (sets `x-api-key` header automatically) |
 | **Bearer Auth** | Endpoints expecting `Authorization: Bearer <token>` |
 | **Header Auth (API Key)** | Endpoints expecting a custom header (e.g., `x-api-key`, `Authorization`) |
 
-For API key authentication, create an **Header Auth** credential in n8n with the header name (e.g., `x-api-key`) and your API key as the value.
+For Anthropic, select **Anthropic API Key** and use your existing Anthropic credential in n8n. For other API key authentication, create a **Header Auth** credential with the header name (e.g., `x-api-key`) and your API key as the value.
 
 ## Parameters
 
@@ -103,11 +104,7 @@ With **Include Metadata** enabled, each item includes:
 
 ## Migrating from v0.1.0
 
-If you were using the **Anthropic API** authentication option:
-
-1. Change Authentication to **Header Auth (API Key)**
-2. Create an **Header Auth** credential with name `x-api-key` and your Anthropic API key as the value
-3. Save and test your workflow
+v0.2.0 temporarily removed the Anthropic API Key option. It was re-added in v0.3.0, so no migration is needed — your existing Anthropic credentials will work as before.
 
 ## License
 
